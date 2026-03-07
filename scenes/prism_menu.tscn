@@ -1,0 +1,249 @@
+[gd_scene format=3 uid="uid://dd0ovaqt1fixe"]
+
+[ext_resource type="PackedScene" uid="uid://di3wp74klyfps" path="res://scenes/prism_model.tscn" id="1_okwi5"]
+[ext_resource type="PackedScene" uid="uid://cm8608u4ho14p" path="res://scenes/prism_menus/calendar_menu.tscn" id="2_5qmwo"]
+[ext_resource type="PackedScene" uid="uid://bf0bf4sxo6y8e" path="res://scenes/prism_menus/inventory_menu.tscn" id="3_u5qbs"]
+[ext_resource type="PackedScene" uid="uid://cqllkcqlgsflm" path="res://scenes/prism_menus/map_menu.tscn" id="4_plm80"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_okwi5"]
+viewport_path = NodePath("prismViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_plm80"]
+viewport_path = NodePath("../../../calendarViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t58xh"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_plm80")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hwf0c"]
+viewport_path = NodePath("../../../inventoryViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0kqo"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_hwf0c")
+uv1_scale = Vector3(0.555, 0.555, 0.555)
+uv1_offset = Vector3(0.5, 0.5, 0.66)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wpu25"]
+viewport_path = NodePath("../../../mapViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61f54"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_wpu25")
+uv1_scale = Vector3(0.575, 0.575, -0.575)
+uv1_offset = Vector3(0.5, 0.5, 0.33)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+
+[sub_resource type="Animation" id="Animation_u5qbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prismViewport/Node3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("prismViewport/Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5qmwo"]
+resource_name = "close"
+length = 0.96666664
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prismViewport/Node3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.2191386, 0.14865084),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -2.41, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("prismViewport/Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(2.2191386, 0.20306297),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.47996554, -4.6774826, -0.863938)]
+}
+
+[sub_resource type="Animation" id="Animation_okwi5"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prismViewport/Node3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.14865084, 1),
+"update": 0,
+"values": [Vector3(0, -2.41, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("prismViewport/Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.20306297, 1),
+"update": 0,
+"values": [Vector3(0.47996554, -4.6774826, -0.863938), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qmwo"]
+_data = {
+&"RESET": SubResource("Animation_u5qbs"),
+&"close": SubResource("Animation_5qmwo"),
+&"open": SubResource("Animation_okwi5")
+}
+
+[node name="prismMenu" type="Control" unique_id=611408818]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=547755946]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_okwi5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="prismViewport" type="SubViewport" parent="." unique_id=910367643]
+transparent_bg = true
+handle_input_locally = false
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="prismViewport" unique_id=163834480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.506018)
+fov = 70.5
+
+[node name="Node3D" type="Node3D" parent="prismViewport" unique_id=169379916]
+
+[node name="paperPrism" parent="prismViewport/Node3D" unique_id=1393493224 instance=ExtResource("1_okwi5")]
+
+[node name="Cylinder" parent="prismViewport/Node3D/paperPrism" index="0" unique_id=104808745]
+surface_material_override/0 = SubResource("StandardMaterial3D_t58xh")
+surface_material_override/1 = SubResource("StandardMaterial3D_s0kqo")
+surface_material_override/2 = SubResource("StandardMaterial3D_61f54")
+
+[node name="calendarViewport" type="SubViewport" parent="." unique_id=888255506]
+handle_input_locally = false
+size = Vector2i(480, 480)
+render_target_update_mode = 4
+
+[node name="calendar" parent="calendarViewport" unique_id=1617569358 instance=ExtResource("2_5qmwo")]
+offset_right = 0.0
+
+[node name="inventoryViewport" type="SubViewport" parent="." unique_id=1096695286]
+handle_input_locally = false
+size = Vector2i(480, 480)
+render_target_update_mode = 4
+
+[node name="inventory" parent="inventoryViewport" unique_id=233262027 instance=ExtResource("3_u5qbs")]
+offset_right = 0.0
+
+[node name="mapViewport" type="SubViewport" parent="." unique_id=1134406126]
+handle_input_locally = false
+size = Vector2i(480, 480)
+render_target_update_mode = 4
+
+[node name="map" parent="mapViewport" unique_id=1076417815 instance=ExtResource("4_plm80")]
+offset_right = 0.0
+
+[node name="settingsViewport" type="SubViewport" parent="." unique_id=1865655500]
+handle_input_locally = false
+size = Vector2i(520, 520)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="settingsViewport" unique_id=2007827893]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="settingsViewport/Control" unique_id=1894066594]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="Button" type="Button" parent="settingsViewport/Control" unique_id=1071854241]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -62.0
+offset_right = 183.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "settings"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=220687048]
+libraries/ = SubResource("AnimationLibrary_5qmwo")
+autoplay = &"open"
+
+[node name="switch_timer" type="Timer" parent="." unique_id=871859873]
+wait_time = 0.15
+one_shot = true
+
+[editable path="prismViewport/Node3D/paperPrism"]

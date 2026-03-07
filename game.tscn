@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bhhpuqil50rol"]
+
+[ext_resource type="PackedScene" uid="uid://dy4yrxd0lax1g" path="res://scenes/player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bnciqj86q1mlp" path="res://scripts/player.gd" id="2_e2o6t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
+
+[sub_resource type="Sky" id="Sky_80nbo"]
+sky_material = SubResource("ProceduralSkyMaterial_mwb40")
+
+[sub_resource type="Environment" id="Environment_e2o6t"]
+background_mode = 2
+sky = SubResource("Sky_80nbo")
+ambient_light_source = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
+
+[node name="game" type="Node" unique_id=942567432]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1496471688]
+
+[node name="world" type="Node3D" parent="." unique_id=2099821227]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="world" unique_id=517878542]
+environment = SubResource("Environment_e2o6t")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world" unique_id=715985181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4697223, 0)
+use_collision = true
+size = Vector3(9.36, 6.175, 12.375)
+material = SubResource("StandardMaterial3D_mwb40")
+
+[node name="CharacterBody3D" parent="world" unique_id=538726879 instance=ExtResource("1_80nbo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5188903, 0)
+script = ExtResource("2_e2o6t")
+
+[node name="Camera3D" type="Camera3D" parent="world/CharacterBody3D" unique_id=806672876]
+transform = Transform3D(1, 0, 0, 0, 0.9923298, 0.12361877, 0, -0.12361877, 0.9923298, 0, 1.3137938, 6.25785)
+fov = 58.7
