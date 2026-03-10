@@ -1,45 +1,67 @@
 [gd_scene format=3 uid="uid://dd0ovaqt1fixe"]
 
+[ext_resource type="Script" uid="uid://ifjd6164fkg7" path="res://scripts/menus/prism_menu.gd" id="1_hwf0c"]
 [ext_resource type="PackedScene" uid="uid://di3wp74klyfps" path="res://scenes/prism_model.tscn" id="1_okwi5"]
 [ext_resource type="PackedScene" uid="uid://cm8608u4ho14p" path="res://scenes/prism_menus/calendar_menu.tscn" id="2_5qmwo"]
+[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="2_hwf0c"]
+[ext_resource type="Shader" uid="uid://caxsc5vf6twj4" path="res://shaders/screen_blur.gdshader" id="2_s0kqo"]
 [ext_resource type="PackedScene" uid="uid://bf0bf4sxo6y8e" path="res://scenes/prism_menus/inventory_menu.tscn" id="3_u5qbs"]
 [ext_resource type="PackedScene" uid="uid://cqllkcqlgsflm" path="res://scenes/prism_menus/map_menu.tscn" id="4_plm80"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wpu25"]
+shader = ExtResource("2_s0kqo")
+shader_parameter/blur_size = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_hwf0c"]
+colors = PackedColorArray(0, 0, 0, 0.22352941, 0, 0, 0, 0.61960787)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s0kqo"]
+gradient = SubResource("Gradient_hwf0c")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwf0c"]
+shader = ExtResource("2_hwf0c")
+shader_parameter/allow_out_of_bounds = true
+shader_parameter/outline_thickness = 2.0
+shader_parameter/outline_color = Color(1, 0.90333337, 0.42000002, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_okwi5"]
 viewport_path = NodePath("prismViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_plm80"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s0kqo"]
 viewport_path = NodePath("../../../calendarViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t58xh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpu25"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_plm80")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
+albedo_texture = SubResource("ViewportTexture_s0kqo")
+uv1_scale = Vector3(0.505, 0.525, 0.5)
 uv1_offset = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 150.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hwf0c"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_61f54"]
 viewport_path = NodePath("../../../inventoryViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0kqo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ghpjg"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_hwf0c")
-uv1_scale = Vector3(0.555, 0.555, 0.555)
-uv1_offset = Vector3(0.5, 0.5, 0.66)
+albedo_texture = SubResource("ViewportTexture_61f54")
+uv1_scale = Vector3(0.555, 0.53, 0.59)
+uv1_offset = Vector3(0.5, 0.5, 0.665)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 150.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wpu25"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mnjj6"]
 viewport_path = NodePath("../../../mapViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61f54"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nbyxj"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_wpu25")
-uv1_scale = Vector3(0.575, 0.575, -0.575)
+albedo_texture = SubResource("ViewportTexture_mnjj6")
+uv1_scale = Vector3(0.575, 0.52, -0.59)
 uv1_offset = Vector3(0.5, 0.5, 0.33)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 150.0
@@ -54,9 +76,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(0.14865084),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, -3.435, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -66,14 +88,38 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.20306297),
+"update": 0,
+"values": [Vector3(0.47996554, -4.6774826, -0.863938)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blurRect:material:shader_parameter/blur_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("darkenRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5qmwo"]
 resource_name = "close"
-length = 0.96666664
+length = 0.6517
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -81,10 +127,10 @@ tracks/0/path = NodePath("prismViewport/Node3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2.2191386, 0.14865084),
+"times": PackedFloat32Array(0, 0.4833333),
+"transitions": PackedFloat32Array(2.297396, 0.14865084),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -2.41, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -3.435, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -93,10 +139,34 @@ tracks/1/path = NodePath("prismViewport/Node3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.46666667),
-"transitions": PackedFloat32Array(2.2191386, 0.20306297),
+"times": PackedFloat32Array(0, 0.4333333),
+"transitions": PackedFloat32Array(2.297396, 0.20306297),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.47996554, -4.6774826, -0.863938)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("blurRect:material:shader_parameter/blur_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.46666664),
+"transitions": PackedFloat32Array(2.0705302, 0.43527532),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("darkenRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.43333334),
+"transitions": PackedFloat32Array(2.6390164, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_okwi5"]
@@ -111,7 +181,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(0.14865084, 1),
 "update": 0,
-"values": [Vector3(0, -2.41, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -3.435, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -124,6 +194,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.20306297, 1),
 "update": 0,
 "values": [Vector3(0.47996554, -4.6774826, -0.863938), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("darkenRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.40612614, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("blurRect:material:shader_parameter/blur_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(0.40612614, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.8, 0.8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5qmwo"]
@@ -140,8 +234,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hwf0c")
+
+[node name="blurRect" type="ColorRect" parent="." unique_id=437682623]
+material = SubResource("ShaderMaterial_wpu25")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="darkenRect" type="TextureRect" parent="." unique_id=184508794]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s0kqo")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=547755946]
+material = SubResource("ShaderMaterial_hwf0c")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -159,25 +274,28 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="prismViewport" type="SubViewport" parent="." unique_id=910367643]
+own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
-size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="prismViewport" unique_id=163834480]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.506018)
-fov = 70.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.8690493)
+fov = 66.2
 
 [node name="Node3D" type="Node3D" parent="prismViewport" unique_id=169379916]
+transform = Transform3D(-0.37356773, 0.2731614, 0.8864705, -0.67448825, 0.57606745, -0.4617486, -0.6367987, -0.77040845, -0.030956045, 0, -3.435, 0)
 
 [node name="paperPrism" parent="prismViewport/Node3D" unique_id=1393493224 instance=ExtResource("1_okwi5")]
 
-[node name="Cylinder" parent="prismViewport/Node3D/paperPrism" index="0" unique_id=104808745]
-surface_material_override/0 = SubResource("StandardMaterial3D_t58xh")
-surface_material_override/1 = SubResource("StandardMaterial3D_s0kqo")
-surface_material_override/2 = SubResource("StandardMaterial3D_61f54")
+[node name="Cylinder" parent="prismViewport/Node3D/paperPrism" index="0" unique_id=1253825893]
+surface_material_override/0 = SubResource("StandardMaterial3D_wpu25")
+surface_material_override/1 = SubResource("StandardMaterial3D_ghpjg")
+surface_material_override/2 = SubResource("StandardMaterial3D_nbyxj")
 
 [node name="calendarViewport" type="SubViewport" parent="." unique_id=888255506]
+disable_3d = true
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(480, 480)
 render_target_update_mode = 4
@@ -186,6 +304,7 @@ render_target_update_mode = 4
 offset_right = 0.0
 
 [node name="inventoryViewport" type="SubViewport" parent="." unique_id=1096695286]
+disable_3d = true
 handle_input_locally = false
 size = Vector2i(480, 480)
 render_target_update_mode = 4
@@ -194,6 +313,7 @@ render_target_update_mode = 4
 offset_right = 0.0
 
 [node name="mapViewport" type="SubViewport" parent="." unique_id=1134406126]
+disable_3d = true
 handle_input_locally = false
 size = Vector2i(480, 480)
 render_target_update_mode = 4
@@ -202,6 +322,7 @@ render_target_update_mode = 4
 offset_right = 0.0
 
 [node name="settingsViewport" type="SubViewport" parent="." unique_id=1865655500]
+disable_3d = true
 handle_input_locally = false
 size = Vector2i(520, 520)
 render_target_update_mode = 4
@@ -240,10 +361,13 @@ text = "settings"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=220687048]
 libraries/ = SubResource("AnimationLibrary_5qmwo")
-autoplay = &"open"
 
-[node name="switch_timer" type="Timer" parent="." unique_id=871859873]
-wait_time = 0.15
+[node name="switchTimer" type="Timer" parent="." unique_id=871859873]
+wait_time = 0.1
+one_shot = true
+
+[node name="openTimer" type="Timer" parent="." unique_id=1047793242]
+wait_time = 0.55
 one_shot = true
 
 [editable path="prismViewport/Node3D/paperPrism"]

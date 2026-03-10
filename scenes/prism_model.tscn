@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://di3wp74klyfps"]
 
 [ext_resource type="PackedScene" uid="uid://dkgl50lu2ckxe" path="res://models/paperPrism.glb" id="1_1p8g0"]
-[ext_resource type="Script" uid="uid://bik42alk76onr" path="res://prism_model.gd" id="2_ad1bq"]
+[ext_resource type="Script" uid="uid://bik42alk76onr" path="res://scripts/prism_model.gd" id="2_ad1bq"]
 
 [node name="paperPrism" unique_id=1393493224 instance=ExtResource("1_1p8g0")]
 script = ExtResource("2_ad1bq")

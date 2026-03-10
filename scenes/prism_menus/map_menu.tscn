@@ -1,5 +1,20 @@
 [gd_scene format=3 uid="uid://cqllkcqlgsflm"]
 
+[ext_resource type="Shader" uid="uid://dq8qsrx8qlxcf" path="res://shaders/prism_bg.gdshader" id="1_xq1uu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rea1p"]
+shader = ExtResource("1_xq1uu")
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = 0.285
+shader_parameter/zoom = 4.245
+shader_parameter/gradient_pixelation = 0.166000007885
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.0330000015675
+shader_parameter/color_mid_threshold = 0.10400000494
+shader_parameter/color_low = Color(0.0071999934, 0.51804006, 0.72, 0.3137255)
+shader_parameter/color_mid = Color(0.1764, 0.98, 0.31033322, 1)
+shader_parameter/color_high = Color(0.88816667, 1, 0.39, 1)
+
 [node name="map" type="Control" unique_id=1617569358]
 layout_mode = 3
 anchors_preset = 15
@@ -16,3 +31,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.44799995, 1, 0.31, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1631384354]
+material = SubResource("ShaderMaterial_rea1p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1269462080]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.0
+offset_top = 27.0
+offset_right = 205.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.078400016, 0.49, 0.35280004, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 25
+text = "Map"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

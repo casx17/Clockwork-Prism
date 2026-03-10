@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dy4yrxd0lax1g"]
 
-[ext_resource type="Texture2D" uid="uid://bdsv43nonou7y" path="res://sprites/playerplaceholder.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://rj0bkceiavtc" path="res://sprites/haze.png" id="2_g2els"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8vuu"]
-size = Vector3(0.50561523, 1.0537109, 0.3408203)
+size = Vector3(0.29003906, 0.6376953, 0.25)
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=538726879]
 
@@ -11,5 +11,8 @@ size = Vector3(0.50561523, 1.0537109, 0.3408203)
 shape = SubResource("BoxShape3D_u8vuu")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=385431554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.028361857, 0)
-texture = ExtResource("1_3vyb7")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0036535263, 0)
+texture_filter = 1
+texture = ExtResource("2_g2els")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1092724397]

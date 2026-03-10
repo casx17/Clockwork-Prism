@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://bhhpuqil50rol"]
+
+[ext_resource type="PackedScene" uid="uid://dd0ovaqt1fixe" path="res://scenes/prism_menu.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dy4yrxd0lax1g" path="res://scenes/player.tscn" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://r583nbwnpmkg" path="res://scripts/dialogue_choice_picker.gd" id="2_gee14"]
+[ext_resource type="Script" uid="uid://bnciqj86q1mlp" path="res://scripts/player.gd" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bjj82v2e0u1qn" path="res://sprites/tile.png" id="2_p57ef"]
+[ext_resource type="Script" uid="uid://d2ipnmxg28auh" path="res://scripts/camera_arm.gd" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bay5lkl6arrcd" path="res://scenes/test_npc.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://du607kh75gvsl" path="res://scripts/minimap_camera.gd" id="7_u5sy4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p57ef"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
+sky_top_color = Color(0.12650001, 0.26060843, 0.55, 1)
+sky_horizon_color = Color(0.5429, 0.78008497, 0.89, 1)
+ground_bottom_color = Color(0.46279997, 0.72624, 0.89, 1)
+ground_horizon_color = Color(0.5696, 0.8259199, 0.89, 1)
+ground_curve = 0.0027739324
+
+[sub_resource type="Sky" id="Sky_80nbo"]
+sky_material = SubResource("ProceduralSkyMaterial_mwb40")
+
+[sub_resource type="Environment" id="Environment_e2o6t"]
+background_mode = 2
+background_energy_multiplier = 1.56
+sky = SubResource("Sky_80nbo")
+ambient_light_source = 3
+ambient_light_color = Color(0.80910003, 0.85579, 0.87, 1)
+ambient_light_sky_contribution = 0.07
+reflected_light_source = 2
+ssil_radius = 0.71
+ssil_intensity = 1.63
+ssil_sharpness = 1.0
+sdfgi_read_sky_light = false
+adjustment_enabled = true
+adjustment_saturation = 1.16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwb40"]
+transparency = 1
+shading_mode = 2
+albedo_color = Color(1, 1, 1, 0.5058824)
+albedo_texture = ExtResource("2_p57ef")
+uv1_scale = Vector3(3.365, 3.365, 3.365)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+proximity_fade_distance = 241.94
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lnu2h"]
+size = Vector3(1, 3.6037598, 13.4375)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbhrr"]
+size = Vector3(10.443848, 3.6037598, 1.4041748)
+
+[node name="game" type="Node" unique_id=942567432]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1496471688]
+
+[node name="prismMenu" parent="CanvasLayer" unique_id=611408818 instance=ExtResource("1_lnu2h")]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=680971081]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -184.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = 183.0
+grow_horizontal = 0
+texture = SubResource("ViewportTexture_p57ef")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="dialogueChoicePicker" type="Control" parent="CanvasLayer" unique_id=367075821]
+layout_mode = 3
+anchor_left = 0.771
+anchor_top = 0.95400006
+anchor_right = 0.771
+anchor_bottom = 0.95400006
+offset_left = -122.44
+offset_top = -92.92001
+offset_right = 122.56
+offset_bottom = 0.07998657
+script = ExtResource("2_gee14")
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/dialogueChoicePicker" unique_id=1401320156]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -122.5
+offset_top = -39.0
+offset_right = 122.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/dialogueChoicePicker/Panel" unique_id=1371016872]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/dialogueChoicePicker/Panel/MarginContainer" unique_id=55819777]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/dialogueChoicePicker/Panel/MarginContainer" unique_id=1136848403]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/dialogueChoicePicker/Panel/MarginContainer/Control" unique_id=196629925]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.513
+anchor_right = 0.513
+offset_left = -119.607
+offset_top = -23.0
+offset_right = 119.393
+offset_bottom = -9.0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 10
+text = "choose!"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="world" type="Node3D" parent="." unique_id=2099821227]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="world" unique_id=517878542]
+environment = SubResource("Environment_e2o6t")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world" unique_id=715985181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4697223, 0)
+use_collision = true
+size = Vector3(9.36, 6.175, 12.375)
+material = SubResource("StandardMaterial3D_mwb40")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="world" unique_id=299881193]
+transform = Transform3D(0.97452295, -0.22428778, 0, 0.22428778, 0.97452295, 0, 0, 0, 0.43, 2.1281445, -1.0255655, -2.9450862)
+use_collision = true
+size = Vector3(2.308838, 1.6240234, 3.1875)
+material = SubResource("StandardMaterial3D_mwb40")
+
+[node name="player" parent="world" unique_id=538726879 instance=ExtResource("1_yqjtg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5188903, 0)
+script = ExtResource("2_lnu2h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="world" unique_id=1582609569]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=635329425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0991397, 0, 0)
+shape = SubResource("BoxShape3D_lnu2h")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=1739132915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.978951, 0, 0)
+shape = SubResource("BoxShape3D_lnu2h")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=1465358223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013085365, 0, 6.7077427)
+shape = SubResource("BoxShape3D_lbhrr")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=1629794297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013085365, 0, -6.701653)
+shape = SubResource("BoxShape3D_lbhrr")
+
+[node name="camera_arm" type="SpringArm3D" parent="world" unique_id=1027214585 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5188903, 0)
+collision_mask = 2
+spring_length = 3.085
+script = ExtResource("4_lbhrr")
+target = NodePath("../player")
+
+[node name="Node3D" type="Node3D" parent="world/camera_arm" unique_id=186851937]
+
+[node name="camera" type="Camera3D" parent="world/camera_arm/Node3D" unique_id=806672876]
+transform = Transform3D(1, 0, 0, 0, 0.9923298, 0.12361877, 0, -0.12361877, 0.9923298, 0, 0.64808667, 0)
+fov = 58.7
+
+[node name="testNpc" parent="world" unique_id=1121843691 instance=ExtResource("5_iywne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13141, 0.12132585, -1.8395512)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1837750096]
+
+[node name="minimap_camera" type="Camera3D" parent="SubViewport" unique_id=1531148860 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 4.624147)
+fov = 22.6
+script = ExtResource("7_u5sy4")
+target = NodePath("../../world/player")

@@ -1,5 +1,20 @@
 [gd_scene format=3 uid="uid://bf0bf4sxo6y8e"]
 
+[ext_resource type="Shader" uid="uid://dq8qsrx8qlxcf" path="res://shaders/prism_bg.gdshader" id="1_wvfml"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6a1tt"]
+shader = ExtResource("1_wvfml")
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = 0.285
+shader_parameter/zoom = 4.245
+shader_parameter/gradient_pixelation = 0.166000007885
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.0330000015675
+shader_parameter/color_mid_threshold = 0.10400000494
+shader_parameter/color_low = Color(0.31608006, 0.0071999934, 0.72, 0.3137255)
+shader_parameter/color_mid = Color(0.1764, 0.6585599, 0.98, 1)
+shader_parameter/color_high = Color(0.06999999, 1, 0.69000006, 1)
+
 [node name="inventory" type="Control" unique_id=1617569358]
 layout_mode = 3
 anchors_preset = 15
@@ -9,10 +24,38 @@ offset_right = -160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1131901225]
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1284889765]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.17000002, 0.8893334, 1, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1900543924]
+material = SubResource("ShaderMaterial_6a1tt")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=438550482]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.0
+offset_top = 27.0
+offset_right = 205.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.1083, 0.23141988, 0.57, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 25
+text = "Inventory"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
