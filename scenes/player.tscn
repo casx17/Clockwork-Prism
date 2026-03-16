@@ -5,14 +5,37 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_u8vuu"]
 size = Vector3(0.29003906, 0.6376953, 0.25)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.47058824)
+albedo_texture = ExtResource("2_g2els")
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2els"]
+next_pass = SubResource("StandardMaterial3D_3vyb7")
+transparency = 1
+albedo_texture = ExtResource("2_g2els")
+stencil_mode = 2
+stencil_flags = 2
+stencil_color = Color(0, 0, 0, 0.47058824)
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=538726879]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2050997321]
 shape = SubResource("BoxShape3D_u8vuu")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=385431554]
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1391646293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0036535263, 0)
+material_override = SubResource("StandardMaterial3D_g2els")
+no_depth_test = true
 texture_filter = 1
+render_priority = 1
 texture = ExtResource("2_g2els")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1092724397]

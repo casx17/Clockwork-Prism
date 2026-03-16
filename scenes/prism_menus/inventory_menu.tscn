@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bf0bf4sxo6y8e"]
 
 [ext_resource type="Shader" uid="uid://dq8qsrx8qlxcf" path="res://shaders/prism_bg.gdshader" id="1_wvfml"]
+[ext_resource type="Theme" uid="uid://pu6mbmsh7l73" path="res://resources/themes/prism_glass.tres" id="2_6a1tt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6a1tt"]
 shader = ExtResource("1_wvfml")
@@ -41,6 +42,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="frame" type="PanelContainer" parent="." unique_id=727305620]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6a1tt")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=438550482]
 layout_mode = 1

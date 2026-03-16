@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ifjd6164fkg7" path="res://scripts/menus/prism_menu.gd" id="1_hwf0c"]
 [ext_resource type="PackedScene" uid="uid://di3wp74klyfps" path="res://scenes/prism_model.tscn" id="1_okwi5"]
 [ext_resource type="PackedScene" uid="uid://cm8608u4ho14p" path="res://scenes/prism_menus/calendar_menu.tscn" id="2_5qmwo"]
-[ext_resource type="Shader" path="res://shaders/outline.gdshader" id="2_hwf0c"]
+[ext_resource type="Shader" uid="uid://b56e26i5vhqq3" path="res://shaders/outline.gdshader" id="2_hwf0c"]
 [ext_resource type="Shader" uid="uid://caxsc5vf6twj4" path="res://shaders/screen_blur.gdshader" id="2_s0kqo"]
 [ext_resource type="PackedScene" uid="uid://bf0bf4sxo6y8e" path="res://scenes/prism_menus/inventory_menu.tscn" id="3_u5qbs"]
 [ext_resource type="PackedScene" uid="uid://cqllkcqlgsflm" path="res://scenes/prism_menus/map_menu.tscn" id="4_plm80"]
@@ -288,7 +288,7 @@ transform = Transform3D(-0.37356773, 0.2731614, 0.8864705, -0.67448825, 0.576067
 
 [node name="paperPrism" parent="prismViewport/Node3D" unique_id=1393493224 instance=ExtResource("1_okwi5")]
 
-[node name="Cylinder" parent="prismViewport/Node3D/paperPrism" index="0" unique_id=1253825893]
+[node name="Cylinder" parent="prismViewport/Node3D/paperPrism" index="0" unique_id=104808745]
 surface_material_override/0 = SubResource("StandardMaterial3D_wpu25")
 surface_material_override/1 = SubResource("StandardMaterial3D_ghpjg")
 surface_material_override/2 = SubResource("StandardMaterial3D_nbyxj")

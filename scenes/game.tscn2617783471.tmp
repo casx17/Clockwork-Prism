@@ -79,7 +79,6 @@ stretch_mode = 5
 [node name="prismMenu" parent="CanvasLayer" unique_id=611408818 instance=ExtResource("1_lnu2h")]
 
 [node name="dialogueChoicePicker" type="Control" parent="CanvasLayer" unique_id=367075821]
-visible = false
 layout_mode = 3
 anchor_left = 0.771
 anchor_top = 0.95400006
@@ -196,6 +195,7 @@ size = Vector3(2.308838, 1.6240234, 3.1875)
 material = SubResource("StandardMaterial3D_mwb40")
 
 [node name="player" parent="world" unique_id=538726879 instance=ExtResource("1_yqjtg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2852292, -0.1063174, -2.212387)
 script = ExtResource("2_lnu2h")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="world" unique_id=1582609569]

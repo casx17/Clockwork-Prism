@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cm8608u4ho14p"]
 
 [ext_resource type="Shader" uid="uid://dq8qsrx8qlxcf" path="res://shaders/prism_bg.gdshader" id="1_1u7ne"]
+[ext_resource type="Theme" uid="uid://b3l8vcqcq2o7d" path="res://resources/themes/calendar_days.tres" id="2_vn5dj"]
+[ext_resource type="Theme" uid="uid://pu6mbmsh7l73" path="res://resources/themes/prism_glass.tres" id="2_y4y74"]
+[ext_resource type="Texture2D" uid="uid://djrwodptghs2m" path="res://sprites/arrow.png" id="3_4oatu"]
+[ext_resource type="Theme" uid="uid://clnfh3enlpgyv" path="res://resources/themes/prism_ui.tres" id="4_n1wlk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vn5dj"]
 shader = ExtResource("1_1u7ne")
@@ -15,11 +19,6 @@ shader_parameter/color_low = Color(0.79, 0.023699978, 0.17696021, 0.3137255)
 shader_parameter/color_mid = Color(0.98, 0.47105336, 0.1764, 1)
 shader_parameter/color_high = Color(0.8295001, 1, 0.06999999, 1)
 
-[sub_resource type="Gradient" id="Gradient_4oatu"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_n1wlk"]
-gradient = SubResource("Gradient_4oatu")
-
 [node name="calendar" type="Control" unique_id=1617569358]
 layout_mode = 3
 anchors_preset = 15
@@ -29,25 +28,29 @@ offset_right = -160.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=2051301223]
+[node name="bgRect" type="ColorRect" parent="." unique_id=2051301223]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.7925, 0.17000002, 1)
+color = Color(0.14, 0.072799996, 0.08847999, 1)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1425308476]
+[node name="liquidRect" type="ColorRect" parent="." unique_id=1425308476]
 material = SubResource("ShaderMaterial_vn5dj")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=505522546]
+[node name="frame" type="PanelContainer" parent="." unique_id=1315076561]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -55,9 +58,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_n1wlk")
+theme = ExtResource("2_y4y74")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1576177475]
+[node name="titleLabel" type="RichTextLabel" parent="." unique_id=1576177475]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -69,8 +72,148 @@ offset_bottom = 71.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0.57, 0.1083, 0.11599488, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 34
 text = "Calendar"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=192302117]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -138.0
+offset_right = 219.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="sun" type="PanelContainer" parent="HBoxContainer" unique_id=1167505267]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/sun" unique_id=621085720]
+layout_mode = 2
+text = "Sun"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mon" type="PanelContainer" parent="HBoxContainer" unique_id=1895940748]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/mon" unique_id=340951438]
+layout_mode = 2
+text = "Mon"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer/mon" unique_id=1784989335]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/mon/Control" unique_id=1225511782]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 38.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("3_4oatu")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="tue" type="PanelContainer" parent="HBoxContainer" unique_id=1008612643]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/tue" unique_id=523647213]
+layout_mode = 2
+text = "Tue"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="wed" type="PanelContainer" parent="HBoxContainer" unique_id=1025073360]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/wed" unique_id=1642743206]
+layout_mode = 2
+text = "Wed"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="thu" type="PanelContainer" parent="HBoxContainer" unique_id=1800420599]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/thu" unique_id=202170202]
+layout_mode = 2
+text = "Thu"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fri" type="PanelContainer" parent="HBoxContainer" unique_id=1003175296]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/fri" unique_id=1683768309]
+layout_mode = 2
+text = "Fri"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sat" type="PanelContainer" parent="HBoxContainer" unique_id=834891820]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_vn5dj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/sat" unique_id=1776967955]
+layout_mode = 2
+text = "Sat"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2028379267]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = 39.0
+offset_right = 203.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_n1wlk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=1371118969]
+layout_mode = 2
+text = "hi im text what!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

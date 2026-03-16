@@ -2,10 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://hmqqlvq26s21" path="res://scenes/dialogue_area.tscn" id="1_a1j51"]
 [ext_resource type="Texture2D" uid="uid://bdsv43nonou7y" path="res://sprites/playerplaceholder.png" id="1_upkiv"]
-[ext_resource type="PackedScene" uid="uid://dbo83l6icosmx" path="res://scenes/components/speech_bubble.tscn" id="2_fohsx"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_a1j51"]
-viewport_path = NodePath("SubViewport")
 
 [node name="testNpc" type="Node3D" unique_id=1121843691]
 
@@ -13,14 +9,5 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1710669791]
 transform = Transform3D(0.74, 0, 0, 0, 0.74, 0, 0, 0, 0.74, 0, 0, 0)
+alpha_cut = 1
 texture = ExtResource("1_upkiv")
-
-[node name="speech_bubble" parent="." unique_id=497343042 instance=ExtResource("2_fohsx")]
-
-[node name="pivot" parent="speech_bubble" index="1" unique_id=1778641596]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 1, 0.38831764, 0.4854219, 0)
-
-[node name="textSprite" parent="speech_bubble/pivot" index="1" unique_id=323212007]
-texture = SubResource("ViewportTexture_a1j51")
-
-[editable path="speech_bubble"]
