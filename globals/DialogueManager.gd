@@ -1,10 +1,21 @@
 extends Node
 
-signal showDialogueChoices(choices : Array[String])
+signal show_dialogue_choices(choices : Array[String])
+signal write_dialogue(dialogue : Dialogue)
+signal dialogue_finished
+signal response_chosen(response : String)
+
+var in_dialogue := false
+
+func _ready() -> void:
+	dialogue_finished.connect(_dialogue_finished)
+
+func startDialogue(dialogue : Dialogue) -> void:
+	in_dialogue = true
+	write_dialogue.emit(dialogue)
 
 func promptDialogueChoices(choices : Array[String]) -> void:
-	showDialogueChoices.emit(choices)
+	show_dialogue_choices.emit(choices)
 
-func _ready():
-	await get_tree().create_timer(0.5).timeout
-	promptDialogueChoices(["yeah", "nah", "shut up", "what"])
+func _dialogue_finished() -> void:
+	in_dialogue = false

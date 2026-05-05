@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Dialogue" format=3 uid="uid://cjar2yho5yj5g"]
+
+[ext_resource type="Script" uid="uid://cm6ab8no5spi" path="res://scripts/classes/dialogue.gd" id="1_ch3af"]
+[ext_resource type="Script" uid="uid://6l5xh61fwxe" path="res://scripts/classes/sentence.gd" id="2_yjr37"]
+[ext_resource type="AudioStream" uid="uid://dapq852xmcw6k" path="res://resources/dialogue_streams/default.tres" id="3_vpvy4"]
+[ext_resource type="SpriteFrames" uid="uid://doos0cf4i85qx" path="res://resources/dialogue_characters/test_dialogue_character.tres" id="4_psorj"]
+
+[sub_resource type="Resource" id="Resource_1yvx8"]
+script = ExtResource("2_yjr37")
+text = "cool cool"
+speaker_name = "guy"
+speaker_sprite_frames = ExtResource("4_psorj")
+sound = ExtResource("3_vpvy4")
+metadata/_custom_type_script = "uid://6l5xh61fwxe"
+
+[resource]
+script = ExtResource("1_ch3af")
+sentences = Array[ExtResource("2_yjr37")]([SubResource("Resource_1yvx8")])
+metadata/_custom_type_script = "uid://cm6ab8no5spi"

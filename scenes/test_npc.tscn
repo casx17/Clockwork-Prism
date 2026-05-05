@@ -1,13 +1,33 @@
 [gd_scene format=3 uid="uid://bay5lkl6arrcd"]
 
-[ext_resource type="PackedScene" uid="uid://hmqqlvq26s21" path="res://scenes/dialogue_area.tscn" id="1_a1j51"]
+[ext_resource type="Script" uid="uid://bsj7g3vchk3i0" path="res://scripts/npcs/test_npc.gd" id="1_fohsx"]
 [ext_resource type="Texture2D" uid="uid://bdsv43nonou7y" path="res://sprites/playerplaceholder.png" id="1_upkiv"]
+[ext_resource type="PackedScene" uid="uid://j1jydjn7fp3a" path="res://scenes/interaction_area.tscn" id="3_a1j51"]
 
-[node name="testNpc" type="Node3D" unique_id=1121843691]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fohsx"]
+size = Vector3(0.34960938, 1, 0.29296875)
 
-[node name="dialogueArea" parent="." unique_id=326148351 instance=ExtResource("1_a1j51")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5e1og"]
+radius = 0.4111328
+height = 1.2304688
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1710669791]
+[node name="testNpc" type="Node3D" unique_id=742503068 node_paths=PackedStringArray("interaction_area")]
+script = ExtResource("1_fohsx")
+interaction_area = NodePath("interactionArea")
+metadata/_custom_type_script = "uid://djsnv683b4adk"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=93154637]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1977023530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1328125)
+shape = SubResource("BoxShape3D_fohsx")
+
+[node name="sprite" type="Sprite3D" parent="." unique_id=1710669791]
 transform = Transform3D(0.74, 0, 0, 0, 0.74, 0, 0, 0, 0.74, 0, 0, 0)
 alpha_cut = 1
 texture = ExtResource("1_upkiv")
+
+[node name="interactionArea" parent="." unique_id=1182079433 instance=ExtResource("3_a1j51")]
+
+[node name="collision" type="CollisionShape3D" parent="interactionArea" unique_id=1787735256]
+shape = SubResource("CapsuleShape3D_5e1og")

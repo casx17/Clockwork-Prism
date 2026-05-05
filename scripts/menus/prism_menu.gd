@@ -17,9 +17,10 @@ func _input(event):
 		else:
 			anim.play("close")
 
-	if event.is_action_pressed("turn_prism_left") and switch_timer.is_stopped():
-		paper_prism.turn(-1)
-		switch_timer.start()
-	elif event.is_action_pressed("turn_prism_right") and switch_timer.is_stopped():
-		paper_prism.turn(1)
-		switch_timer.start()
+	if open:
+		if event.is_action_pressed("turn_prism_left") and switch_timer.is_stopped():
+			paper_prism.turn(-1)
+			switch_timer.start()
+		elif event.is_action_pressed("turn_prism_right") and switch_timer.is_stopped():
+			paper_prism.turn(1)
+			switch_timer.start()
