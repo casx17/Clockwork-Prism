@@ -30,6 +30,51 @@ stencil_color = Color(0, 0, 0, 0.47058824)
 radius = 0.25683594
 height = 0.8339844
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhqgy"]
+shading_mode = 0
+
+[sub_resource type="TextMesh" id="TextMesh_g2els"]
+material = SubResource("StandardMaterial3D_qhqgy")
+text = "E"
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g2els"]
+resource_name = "go"
+length = 1.825
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(-1.8660666, -1.8660666),
+"update": 0,
+"values": [Vector3(0, 0, -0.10471976), Vector3(0, 0, 0.10471976)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhqgy"]
+_data = {
+&"RESET": SubResource("Animation_qhqgy"),
+&"go": SubResource("Animation_g2els")
+}
+
 [node name="player" type="CharacterBody3D" unique_id=538726879]
 script = ExtResource("1_g2els")
 
@@ -50,6 +95,17 @@ region_rect = Rect2(0, 0.4720106, 64, 63.52799)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interaction_radius" unique_id=1866228367]
 shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="interactLabel" type="Node3D" parent="." unique_id=567911545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45555532, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="interactLabel" unique_id=1567366059]
+transform = Transform3D(0.81, 0, 0, 0, 0.81, 0, 0, 0, 0.81, 0, -0.04, 0)
+mesh = SubResource("TextMesh_g2els")
+
+[node name="interactAnim" type="AnimationPlayer" parent="interactLabel" unique_id=2024919982]
+libraries/ = SubResource("AnimationLibrary_qhqgy")
 
 [connection signal="area_entered" from="interaction_radius" to="." method="_on_interaction_radius_area_entered"]
 [connection signal="area_exited" from="interaction_radius" to="." method="_on_interaction_radius_area_exited"]

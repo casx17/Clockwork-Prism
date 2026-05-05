@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://6l5xh61fwxe" path="res://scripts/classes/sentence.gd" id="2_7ehho"]
 [ext_resource type="AudioStream" uid="uid://dapq852xmcw6k" path="res://resources/dialogue_streams/default.tres" id="3_xfo1c"]
 [ext_resource type="SpriteFrames" uid="uid://doos0cf4i85qx" path="res://resources/dialogue_characters/test_dialogue_character.tres" id="4_xfo1c"]
+[ext_resource type="SpriteFrames" uid="uid://0vg5fv8echwb" path="res://resources/dialogue_characters/haze.tres" id="5_d831k"]
 
 [sub_resource type="Resource" id="Resource_1yvx8"]
 script = ExtResource("2_7ehho")
@@ -17,7 +18,7 @@ metadata/_custom_type_script = "uid://6l5xh61fwxe"
 script = ExtResource("2_7ehho")
 text = "hi yes i am haze"
 speaker_name = "haze"
-speaker_sprite_frames = ExtResource("4_xfo1c")
+speaker_sprite_frames = ExtResource("5_d831k")
 sound = ExtResource("3_xfo1c")
 metadata/_custom_type_script = "uid://6l5xh61fwxe"
 

@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody3D
 
 @onready var interaction_radius = $interaction_radius
+@onready var interact_label: Node3D = $interactLabel
+@onready var interact_anim: AnimationPlayer = $interactLabel/interactAnim
 
 var speed := 1.9
 var acceleration := 13.0
@@ -32,7 +34,11 @@ func _unhandled_input(event):
 func _on_interaction_radius_area_entered(area : Area3D):
 	if area is InteractionArea:
 		interaction_area = area
-
+		interact_label.visible = true
+		interact_anim.play("go")
+		
 func _on_interaction_radius_area_exited(_area : Area3D):
 	if not interaction_radius.get_overlapping_areas():
 		interaction_area = null
+		interact_label.visible = false
+		interact_anim.stop()
