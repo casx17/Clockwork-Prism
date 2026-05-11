@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://d2ipnmxg28auh" path="res://scripts/camera_arm.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bay5lkl6arrcd" path="res://scenes/test_npc.tscn" id="5_iywne"]
 [ext_resource type="Script" uid="uid://du607kh75gvsl" path="res://scripts/minimap_camera.gd" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://cp5v200bga6bs" path="res://sprites/ui/dialogue/textframe.png" id="10_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://djrwodptghs2m" path="res://sprites/arrow.png" id="10_vtaks"]
+[ext_resource type="Texture2D" uid="uid://dpd1r3hg5ivk4" path="res://sprites/ui/dialogue/textframefillt.png" id="11_dinhu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.12650001, 0.26060843, 0.55, 1)
@@ -163,6 +165,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dinhu"]
+texture = ExtResource("10_kvpfn")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvuet"]
+texture = ExtResource("11_dinhu")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0tnpc"]
 content_margin_left = 5.0
 content_margin_top = 2.0
@@ -220,34 +236,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("characterLabel:position")
+tracks/4/path = NodePath("characterLabel:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(6, -28)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("characterLabel:modulate")
+tracks/5/path = NodePath(".:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0.0009999999),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -308,34 +312,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("characterLabel:position")
+tracks/4/path = NodePath("characterLabel:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.38359115),
-"transitions": PackedFloat32Array(0.2253126, 1),
-"update": 0,
-"values": [Vector2(6, -28), Vector2(6, 2.6)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("characterLabel:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.29174536),
 "transitions": PackedFloat32Array(0.12074207, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -396,34 +388,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("characterLabel:position")
+tracks/4/path = NodePath("characterLabel:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(0.23325822, 0.2253126),
-"update": 0,
-"values": [Vector2(6, 2.6), Vector2(6, -28)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("characterLabel:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5888934),
 "transitions": PackedFloat32Array(0.18946461, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -606,15 +586,34 @@ scale = Vector2(1.62, 1.62)
 sprite_frames = SubResource("SpriteFrames_kvpfn")
 autoplay = "default"
 
-[node name="graphic" type="ColorRect" parent="ui/dialogueBox" unique_id=1224320615]
+[node name="graphic" type="Panel" parent="ui/dialogueBox" unique_id=96196170]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = -12.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_dinhu")
+
+[node name="fill" type="Panel" parent="ui/dialogueBox/graphic" unique_id=1216790116]
+modulate = Color(0.025999999, 0.035866655, 0.1, 0.7411765)
+show_behind_parent = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1e-05)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxTexture_kvuet")
 
 [node name="dialogueLabel" type="RichTextLabel" parent="ui/dialogueBox" unique_id=727409624]
 clip_contents = false
@@ -622,18 +621,24 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 10.0
+offset_right = -22.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1e-05)
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0tnpc")
 bbcode_enabled = true
-text = "gbersrbnerdnftg"
+text = "text"
 fit_content = true
 
-[node name="arrow" type="Sprite2D" parent="ui/dialogueBox/dialogueLabel" unique_id=130587600]
-position = Vector2(143, 15)
+[node name="arrow" type="Node2D" parent="ui/dialogueBox/dialogueLabel" unique_id=2005945904]
+position = Vector2(579, 92)
+
+[node name="arrowSprite" type="Sprite2D" parent="ui/dialogueBox/dialogueLabel/arrow" unique_id=130587600]
 scale = Vector2(0.5, 1)
 texture = ExtResource("10_vtaks")
 
@@ -643,15 +648,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -28.0
-offset_right = -444.0
-offset_bottom = -131.99982
+offset_left = 23.0
+offset_top = -19.0
+offset_right = -427.0
+offset_bottom = -122.99983
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
-text = "vsdfvsd"
+text = "name"
 fit_content = true
 
 [node name="letter_audio" type="AudioStreamPlayer" parent="ui/dialogueBox" unique_id=1176656486]

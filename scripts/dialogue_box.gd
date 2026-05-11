@@ -1,12 +1,12 @@
 extends Control
 
 @onready var character_image = $characterImage
-@onready var graphic: ColorRect = $graphic
 @onready var dialogue_label: RichTextLabel = $dialogueLabel
 @onready var character_label = $characterLabel
 @onready var letter_audio: AudioStreamPlayer = $letter_audio
 @onready var anim = $anim
-@onready var arrow: Sprite2D = $dialogueLabel/arrow
+@onready var arrow: Node2D = $dialogueLabel/arrow
+@onready var arrow_sprite = $dialogueLabel/arrow/arrowSprite
 
 signal finished_sentence
 signal accept_pressed
@@ -71,7 +71,7 @@ func _start_writing(sentence : Sentence) -> void:
 	if not sentence_skipped:
 		finished_sentence.emit()
 		arrow.visible = true
-		arrow.global_position = get_last_letter_position()
+		#arrow.global_position = get_last_letter_position()
 	
 func _end_dialogue() -> void:
 	anim.stop()
@@ -90,7 +90,7 @@ func _input(event):
 		sentence_skipped = true
 		dialogue_label.visible_characters = len(dialogue_label.text)
 		arrow.visible = true
-		arrow.global_position = get_last_letter_position()
+		#arrow.global_position = get_last_letter_position()
 		finished_sentence.emit()
 
 func get_last_letter_position():
@@ -121,4 +121,4 @@ func get_last_letter_position():
 
 		y += ascent + descent
 	print(y)
-	return Vector2(x + arrow.texture.get_width()/2, (dialogue_label.global_position.y + y/2) + 1)
+	return Vector2(x + arrow_sprite.texture.get_width()/2, (dialogue_label.global_position.y + y/2) + 1)
