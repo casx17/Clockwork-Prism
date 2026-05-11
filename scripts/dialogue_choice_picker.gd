@@ -20,6 +20,9 @@ func _show_choices(choices : Array[String]) -> void:
 		temp_child.text = i
 		temp_child.connect("pressed", _button_pressed.bind(i))
 		vbox.add_child(temp_child)
+		
+	vbox.get_child(0).grab_focus()
+	print(get_viewport().gui_get_focus_owner())
 
 func _button_pressed(response : String) -> void:
 	DialogueManager.response_chosen.emit(response)

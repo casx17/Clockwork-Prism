@@ -1,8 +1,10 @@
 class_name Player extends CharacterBody3D
 
+@onready var sprite = $sprite
 @onready var interaction_radius = $interaction_radius
 @onready var interact_label: Node3D = $interactLabel
 @onready var interact_anim: AnimationPlayer = $interactLabel/interactAnim
+@onready var anim_tree = $AnimationTree
 
 var speed := 1.9
 var acceleration := 13.0
@@ -17,6 +19,23 @@ func _physics_process(delta: float) -> void:
 
 		var input_dir := Input.get_vector("left", "right", "up", "down")
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y * 0.85)).normalized()
+		
+		if input_dir:
+			#flip
+			if input_dir.x > 0:
+				sprite.flip_h = false
+			elif input_dir.x < 0:
+				sprite.flip_h = true
+				
+			
+			anim_tree.set("parameters/conditions/idle", false)
+			anim_tree.set("parameters/conditions/walk", true)
+			
+			anim_tree.set("parameters/idle/blend_position", Vector2(velocity.x, velocity.z).normalized())
+			anim_tree.set("parameters/walk/blend_position", Vector2(velocity.x, velocity.z).normalized())
+		else:
+			anim_tree.set("parameters/conditions/idle", true)
+			anim_tree.set("parameters/conditions/walk", false)
 		
 		var vel_weight : float 
 		vel_weight = (acceleration if direction.x else friction) * delta
