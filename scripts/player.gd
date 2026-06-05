@@ -12,8 +12,12 @@ var friction := 20.0
 var gravity := 17.0
 var interaction_area : InteractionArea = null
 
+func _ready() -> void:
+	GlobalMain.connect("prism_opened", _prism_opened)
+	GlobalMain.connect("prism_closed", _prism_closed)
+
 func _physics_process(delta: float) -> void:
-	if not PlayerManager.interacting:
+	if (not PlayerManager.interacting) and (not GlobalMain.prism_open):
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 
@@ -54,3 +58,11 @@ func _on_interaction_radius_area_exited(_area : Area3D):
 		interaction_area = null
 		interact_label.visible = false
 		interact_anim.stop()
+
+func _prism_opened() -> void:
+	anim_tree.set("parameters/conditions/idle", false)
+	anim_tree.set("parameters/conditions/walk", false)
+	anim_tree.set("parameters/conditions/prism", true)
+
+func _prism_closed() -> void:
+	anim_tree.set("parameters/conditions/prism", false)

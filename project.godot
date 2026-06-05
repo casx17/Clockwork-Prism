@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 NpcManager="*uid://dllux41q4ja6n"
 DialogueManager="*uid://cqebv7a7bunxg"
 PlayerManager="*uid://d0vh4rakkbip2"
+GlobalMain="*uid://c41tw2vstwpbj"
 
 [display]
 
