@@ -21,13 +21,6 @@ func _physics_process(delta: float) -> void:
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y * 0.85)).normalized()
 		
 		if input_dir:
-			#flip
-			if input_dir.x > 0:
-				sprite.flip_h = false
-			elif input_dir.x < 0:
-				sprite.flip_h = true
-				
-			
 			anim_tree.set("parameters/conditions/idle", false)
 			anim_tree.set("parameters/conditions/walk", true)
 			

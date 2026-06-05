@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cbxsi82x4mcqj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkrth"]
+shading_mode = 0
+albedo_color = Color(0.60122365, 0.60122275, 0.60122293, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fkrth"]
+material = SubResource("StandardMaterial3D_fkrth")
+flip_faces = true
+size = Vector3(11.325, 9.8, 10.945)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idkgt"]
+shading_mode = 0
+albedo_color = Color(0.49747366, 0.49747366, 0.49747366, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fkrth"]
+material = SubResource("StandardMaterial3D_idkgt")
+size = Vector2(4.685, 2)
+
+[node name="battleScene" type="Node3D" unique_id=579842945]
+
+[node name="camera" type="Camera3D" parent="." unique_id=799353501]
+transform = Transform3D(1, 0, 0, 0, 0.99641657, 0.084582195, 0, -0.084582195, 0.9964165, 0, 0.8839574, 2.7832162)
+
+[node name="bg" type="MeshInstance3D" parent="." unique_id=1803002781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7763088, -1.2897264, 0.39428186)
+mesh = SubResource("BoxMesh_fkrth")
+
+[node name="ground" type="MeshInstance3D" parent="." unique_id=1173331973]
+mesh = SubResource("PlaneMesh_fkrth")
