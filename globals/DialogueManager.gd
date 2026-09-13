@@ -6,6 +6,8 @@ signal dialogue_finished
 signal response_chosen(response : String)
 
 var in_dialogue := false
+var box_open := false
+var may_progress := true
 
 func _ready() -> void:
 	dialogue_finished.connect(_dialogue_finished)

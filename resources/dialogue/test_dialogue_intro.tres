@@ -39,5 +39,6 @@ metadata/_custom_type_script = "uid://6l5xh61fwxe"
 
 [resource]
 script = ExtResource("1_m6rxt")
+close_box_on_end = false
 sentences = Array[ExtResource("2_7ehho")]([SubResource("Resource_1yvx8"), SubResource("Resource_7ehho"), SubResource("Resource_yo14h")])
 metadata/_custom_type_script = "uid://cm6ab8no5spi"

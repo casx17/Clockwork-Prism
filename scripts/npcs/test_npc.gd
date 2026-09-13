@@ -6,6 +6,7 @@ func interact():
 	
 	#freeze player
 	PlayerManager.interacting = true
+	PlayerManager.stop_player.emit()
 	
 	#start intro dialogue, wait to finish, then offer choice
 	DialogueManager.startDialogue(load("uid://72mot2jhqt87"))

@@ -21,7 +21,7 @@ func _show_choices(choices : Array[String]) -> void:
 		temp_child.connect("pressed", _button_pressed.bind(i))
 		vbox.add_child(temp_child)
 		
-	vbox.get_child(0).grab_focus()
+	vbox.get_child(0).call_deferred("grab_focus")
 	print(get_viewport().gui_get_focus_owner())
 
 func _button_pressed(response : String) -> void:

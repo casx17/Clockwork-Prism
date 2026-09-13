@@ -12,6 +12,9 @@ var friction := 20.0
 var gravity := 17.0
 var interaction_area : InteractionArea = null
 
+func _ready():
+	PlayerManager.connect("stop_player", _stop)
+
 func _physics_process(delta: float) -> void:
 	if not PlayerManager.interacting:
 		if not is_on_floor():
@@ -49,6 +52,12 @@ func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		if interaction_area and not PlayerManager.interacting:
 			interaction_area.interacted_with.emit()
+
+func _stop() -> void:
+	velocity.x = 0
+	velocity.z = 0
+	anim_tree.set("parameters/conditions/idle", true)
+	anim_tree.set("parameters/conditions/walk", false)
 
 func _on_interaction_radius_area_entered(area : Area3D):
 	if area is InteractionArea:

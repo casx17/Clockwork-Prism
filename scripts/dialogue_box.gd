@@ -9,10 +9,11 @@ extends Control
 @onready var arrow_sprite = $dialogueLabel/arrow/arrowSprite
 
 signal finished_sentence
-signal accept_pressed
+signal accepted
 signal finished_dialogue
 
 var sentence_skipped := false
+var waiting_for_choice := false
 
 func _ready() -> void:
 	DialogueManager.connect("write_dialogue", _start_dialogue)
@@ -21,8 +22,10 @@ func _ready() -> void:
 	
 func _start_dialogue(dialogue : Dialogue) -> void:
 	if dialogue:
-		anim.stop()
-		anim.play("start")
+		if not DialogueManager.box_open:
+			anim.stop()
+			anim.play("start")
+			DialogueManager.box_open = true
 		
 		for i in dialogue.sentences:
 			_start_writing(i)
@@ -30,10 +33,18 @@ func _start_dialogue(dialogue : Dialogue) -> void:
 			if i.auto_continue:
 				await get_tree().create_timer(i.auto_continue_time).timeout
 			else:
-				await accept_pressed
+				await accepted
 		_end_dialogue()
+		if dialogue.close_box_on_end:
+			close_box()
 	else:
 		printerr("tried to start dialogue with no dialogue file")
+
+func close_box() -> void:
+	DialogueManager.box_open = false
+	anim.stop()
+	anim.play("end")
+	_clear_dialogue()
 
 func _start_writing(sentence : Sentence) -> void:
 	dialogue_label.visible_characters = 0
@@ -74,8 +85,6 @@ func _start_writing(sentence : Sentence) -> void:
 		#arrow.global_position = get_last_letter_position()
 	
 func _end_dialogue() -> void:
-	anim.stop()
-	anim.play("end")
 	DialogueManager.dialogue_finished.emit()
 	
 func _clear_dialogue() -> void:
@@ -85,7 +94,7 @@ func _clear_dialogue() -> void:
 
 func _input(event):
 	if event.is_action_pressed("dialogue_continue"):
-		accept_pressed.emit()
+		if DialogueManager.may_progress: accepted.emit()
 	elif event.is_action_pressed("dialogue_skip"):
 		sentence_skipped = true
 		dialogue_label.visible_characters = len(dialogue_label.text)

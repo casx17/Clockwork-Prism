@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bhhpuqil50rol"]
 
+[ext_resource type="Script" uid="uid://bjrrw122oxh7k" path="res://scripts/viewport_container.gd" id="1_kvuet"]
 [ext_resource type="PackedScene" uid="uid://dd0ovaqt1fixe" path="res://scenes/prism_menu.tscn" id="1_lnu2h"]
+[ext_resource type="Shader" uid="uid://doc35jt5c1l5x" path="res://shaders/scrolly.gdshader" id="1_trtic"]
 [ext_resource type="PackedScene" uid="uid://dy4yrxd0lax1g" path="res://scenes/player.tscn" id="1_yqjtg"]
 [ext_resource type="Script" uid="uid://r583nbwnpmkg" path="res://scripts/dialogue_choice_picker.gd" id="2_gee14"]
 [ext_resource type="Texture2D" uid="uid://bjj82v2e0u1qn" path="res://sprites/tile.png" id="2_p57ef"]
@@ -12,6 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://cp5v200bga6bs" path="res://sprites/ui/dialogue/textframe.png" id="10_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://djrwodptghs2m" path="res://sprites/arrow.png" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dpd1r3hg5ivk4" path="res://sprites/ui/dialogue/textframefillt.png" id="11_dinhu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ucxom"]
+shader = ExtResource("1_trtic")
+shader_parameter/motion = Vector2(-6, -6)
+shader_parameter/scale = 1.67
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwb40"]
 sky_top_color = Color(0.12650001, 0.26060843, 0.55, 1)
@@ -58,7 +66,7 @@ size = Vector3(1, 3.6037598, 13.4375)
 size = Vector3(10.443848, 3.6037598, 1.4041748)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_p57ef"]
-viewport_path = NodePath("minimapViewport")
+viewport_path = NodePath("viewportContainer/gameViewport/minimapViewport")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
 atlas = ExtResource("3_0tnpc")
@@ -70,7 +78,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vtaks")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -332,7 +340,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ui/dialogueChoicePicker:modulate")
+tracks/0/path = NodePath("viewportContainer/gameViewport/ui/dialogueChoicePicker:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -344,7 +352,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ui/dialogueChoicePicker:visible")
+tracks/1/path = NodePath("viewportContainer/gameViewport/ui/dialogueChoicePicker:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -360,7 +368,7 @@ length = 0.405
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ui/dialogueChoicePicker:modulate")
+tracks/0/path = NodePath("viewportContainer/gameViewport/ui/dialogueChoicePicker:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -372,7 +380,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ui/dialogueChoicePicker:visible")
+tracks/1/path = NodePath("viewportContainer/gameViewport/ui/dialogueChoicePicker:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -388,7 +396,7 @@ length = 0.76
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ui/dialogueChoicePicker:modulate")
+tracks/0/path = NodePath("viewportContainer/gameViewport/ui/dialogueChoicePicker:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -400,7 +408,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ui/dialogueChoicePicker:visible")
+tracks/1/path = NodePath("viewportContainer/gameViewport/ui/dialogueChoicePicker:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -419,75 +427,116 @@ _data = {
 
 [node name="game" type="Node" unique_id=942567432]
 
-[node name="world" type="Node3D" parent="." unique_id=2099821227]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1217702787]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.01, 0.01, 1)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="world" unique_id=517878542]
+[node name="windowArt" type="TextureRect" parent="." unique_id=266128466]
+modulate = Color(1, 1, 1, 0.019607844)
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ucxom")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_dinhu")
+
+[node name="viewportContainer" type="SubViewportContainer" parent="." unique_id=344350929]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_kvuet")
+
+[node name="gameViewport" type="SubViewport" parent="viewportContainer" unique_id=854186408]
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="world" type="Node3D" parent="viewportContainer/gameViewport" unique_id=2099821227]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="viewportContainer/gameViewport/world" unique_id=517878542]
 environment = SubResource("Environment_e2o6t")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="world" unique_id=715985181]
+[node name="CSGBox3D" type="CSGBox3D" parent="viewportContainer/gameViewport/world" unique_id=715985181]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4697223, 0)
 use_collision = true
 size = Vector3(9.36, 6.175, 12.375)
 
-[node name="CSGBox3D3" type="MeshInstance3D" parent="world" unique_id=1919617296]
+[node name="CSGBox3D3" type="MeshInstance3D" parent="viewportContainer/gameViewport/world" unique_id=1919617296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6478977, -0.70977473, -0.5351647)
 mesh = SubResource("BoxMesh_0tnpc")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="world" unique_id=299881193]
+[node name="CSGBox3D2" type="CSGBox3D" parent="viewportContainer/gameViewport/world" unique_id=299881193]
 transform = Transform3D(0.97452295, -0.22428778, 0, 0.22428778, 0.97452295, 0, 0, 0, 0.43, 2.1281445, -1.0255655, -2.9450862)
 use_collision = true
 size = Vector3(2.308838, 1.6240234, 3.1875)
 material = SubResource("StandardMaterial3D_mwb40")
 
-[node name="player" parent="world" unique_id=538726879 instance=ExtResource("1_yqjtg")]
+[node name="player" parent="viewportContainer/gameViewport/world" unique_id=538726879 instance=ExtResource("1_yqjtg")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="world" unique_id=1582609569]
+[node name="StaticBody3D" type="StaticBody3D" parent="viewportContainer/gameViewport/world" unique_id=1582609569]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=635329425]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="viewportContainer/gameViewport/world/StaticBody3D" unique_id=635329425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0991397, 0, 0)
 shape = SubResource("BoxShape3D_lnu2h")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=1739132915]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="viewportContainer/gameViewport/world/StaticBody3D" unique_id=1739132915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.978951, 0, 0)
 shape = SubResource("BoxShape3D_lnu2h")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=1465358223]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="viewportContainer/gameViewport/world/StaticBody3D" unique_id=1465358223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013085365, 0, 6.7077427)
 shape = SubResource("BoxShape3D_lbhrr")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="world/StaticBody3D" unique_id=1629794297]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="viewportContainer/gameViewport/world/StaticBody3D" unique_id=1629794297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013085365, 0, -6.701653)
 shape = SubResource("BoxShape3D_lbhrr")
 
-[node name="camera_arm" type="SpringArm3D" parent="world" unique_id=1027214585 node_paths=PackedStringArray("target")]
+[node name="camera_arm" type="SpringArm3D" parent="viewportContainer/gameViewport/world" unique_id=1027214585 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5188903, 0)
 collision_mask = 2
 spring_length = 3.085
 script = ExtResource("4_lbhrr")
 target = NodePath("../player")
 
-[node name="Node3D" type="Node3D" parent="world/camera_arm" unique_id=186851937]
+[node name="Node3D" type="Node3D" parent="viewportContainer/gameViewport/world/camera_arm" unique_id=186851937]
 
-[node name="camera" type="Camera3D" parent="world/camera_arm/Node3D" unique_id=806672876]
+[node name="camera" type="Camera3D" parent="viewportContainer/gameViewport/world/camera_arm/Node3D" unique_id=806672876]
 transform = Transform3D(1, 0, 0, 0, 0.9923298, 0.12361877, 0, -0.12361877, 0.9923298, 0, 0.64808667, 0)
 fov = 58.7
 
-[node name="testNpc" parent="world" unique_id=1121843691 instance=ExtResource("5_iywne")]
+[node name="testNpc" parent="viewportContainer/gameViewport/world" unique_id=1121843691 instance=ExtResource("5_iywne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.13141, 0.12132585, -1.8395512)
 
-[node name="minimapViewport" type="SubViewport" parent="." unique_id=1837750096]
+[node name="minimapViewport" type="SubViewport" parent="viewportContainer/gameViewport" unique_id=1837750096]
 
-[node name="minimap_camera" type="Camera3D" parent="minimapViewport" unique_id=1531148860 node_paths=PackedStringArray("target")]
+[node name="minimap_camera" type="Camera3D" parent="viewportContainer/gameViewport/minimapViewport" unique_id=1531148860 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 4.624147)
 fov = 22.6
 script = ExtResource("7_u5sy4")
 target = NodePath("../../world/player")
 
-[node name="ui" type="CanvasLayer" parent="." unique_id=1496471688]
+[node name="ui" type="CanvasLayer" parent="viewportContainer/gameViewport" unique_id=1496471688]
 
-[node name="minimap" type="TextureRect" parent="ui" unique_id=680971081]
+[node name="minimap" type="TextureRect" parent="viewportContainer/gameViewport/ui" unique_id=680971081]
 visible = false
 anchors_preset = 1
 anchor_left = 1.0
@@ -501,9 +550,9 @@ texture = SubResource("ViewportTexture_p57ef")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="prismMenu" parent="ui" unique_id=611408818 instance=ExtResource("1_lnu2h")]
+[node name="prismMenu" parent="viewportContainer/gameViewport/ui" unique_id=611408818 instance=ExtResource("1_lnu2h")]
 
-[node name="dialogueBox" type="Control" parent="ui" unique_id=253735814]
+[node name="dialogueBox" type="Control" parent="viewportContainer/gameViewport/ui" unique_id=253735814]
 layout_mode = 3
 anchor_top = 0.735
 anchor_right = 1.0
@@ -511,16 +560,17 @@ anchor_bottom = 1.0
 offset_top = 0.19998169
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_vtaks")
 
-[node name="characterImage" type="AnimatedSprite2D" parent="ui/dialogueBox" unique_id=1034507975]
+[node name="characterImage" type="AnimatedSprite2D" parent="viewportContainer/gameViewport/ui/dialogueBox" unique_id=1034507975]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(90, -46)
 scale = Vector2(1.62, 1.62)
 sprite_frames = SubResource("SpriteFrames_kvpfn")
 autoplay = "default"
 
-[node name="graphic" type="Panel" parent="ui/dialogueBox" unique_id=96196170]
+[node name="graphic" type="Panel" parent="viewportContainer/gameViewport/ui/dialogueBox" unique_id=96196170]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -534,9 +584,10 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1e-05)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_dinhu")
 
-[node name="fill" type="Panel" parent="ui/dialogueBox/graphic" unique_id=1216790116]
+[node name="fill" type="Panel" parent="viewportContainer/gameViewport/ui/dialogueBox/graphic" unique_id=1216790116]
 modulate = Color(0.025999999, 0.035866655, 0.1, 0.7411765)
 show_behind_parent = true
 texture_filter = 1
@@ -547,9 +598,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_kvuet")
 
-[node name="dialogueLabel" type="RichTextLabel" parent="ui/dialogueBox" unique_id=727409624]
+[node name="dialogueLabel" type="RichTextLabel" parent="viewportContainer/gameViewport/ui/dialogueBox" unique_id=727409624]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 15
@@ -563,20 +615,21 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1e-05)
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0tnpc")
 bbcode_enabled = true
 text = "text"
 fit_content = true
 
-[node name="arrow" type="Node2D" parent="ui/dialogueBox/dialogueLabel" unique_id=2005945904]
+[node name="arrow" type="Node2D" parent="viewportContainer/gameViewport/ui/dialogueBox/dialogueLabel" unique_id=2005945904]
 position = Vector2(579, 92)
 
-[node name="arrowSprite" type="Sprite2D" parent="ui/dialogueBox/dialogueLabel/arrow" unique_id=130587600]
+[node name="arrowSprite" type="Sprite2D" parent="viewportContainer/gameViewport/ui/dialogueBox/dialogueLabel/arrow" unique_id=130587600]
 scale = Vector2(0.5, 1)
 texture = ExtResource("10_vtaks")
 
-[node name="characterLabel" type="RichTextLabel" parent="ui/dialogueBox" unique_id=1356911684]
+[node name="characterLabel" type="RichTextLabel" parent="viewportContainer/gameViewport/ui/dialogueBox" unique_id=1356911684]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -588,18 +641,19 @@ offset_right = -427.0
 offset_bottom = -122.99983
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
 text = "name"
 fit_content = true
 
-[node name="letter_audio" type="AudioStreamPlayer" parent="ui/dialogueBox" unique_id=1176656486]
+[node name="letter_audio" type="AudioStreamPlayer" parent="viewportContainer/gameViewport/ui/dialogueBox" unique_id=1176656486]
 max_polyphony = 55
 
-[node name="anim" type="AnimationPlayer" parent="ui/dialogueBox" unique_id=774458707]
+[node name="anim" type="AnimationPlayer" parent="viewportContainer/gameViewport/ui/dialogueBox" unique_id=774458707]
 libraries/ = SubResource("AnimationLibrary_vtaks")
 
-[node name="dialogueChoicePicker" type="Control" parent="ui" unique_id=367075821]
+[node name="dialogueChoicePicker" type="Control" parent="viewportContainer/gameViewport/ui" unique_id=367075821]
 visible = false
 layout_mode = 3
 anchors_preset = 7
@@ -610,12 +664,13 @@ anchor_bottom = 1.0
 offset_left = -301.0
 offset_top = -459.0
 offset_right = 301.0
-offset_bottom = -24.0
+offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 script = ExtResource("2_gee14")
 
-[node name="mainPanel" type="PanelContainer" parent="ui/dialogueChoicePicker" unique_id=1401320156]
+[node name="mainPanel" type="PanelContainer" parent="viewportContainer/gameViewport/ui/dialogueChoicePicker" unique_id=1401320156]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -627,24 +682,26 @@ offset_top = -39.0
 offset_right = 122.5
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="ui/dialogueChoicePicker/mainPanel" unique_id=1371016872]
+[node name="MarginContainer" type="MarginContainer" parent="viewportContainer/gameViewport/ui/dialogueChoicePicker/mainPanel" unique_id=1371016872]
 layout_mode = 2
 theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/dialogueChoicePicker/mainPanel/MarginContainer" unique_id=55819777]
+[node name="VBoxContainer" type="VBoxContainer" parent="viewportContainer/gameViewport/ui/dialogueChoicePicker/mainPanel/MarginContainer" unique_id=55819777]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_filter = 0
 alignment = 1
 
-[node name="Control" type="Control" parent="ui/dialogueChoicePicker/mainPanel/MarginContainer" unique_id=1136848403]
+[node name="Control" type="Control" parent="viewportContainer/gameViewport/ui/dialogueChoicePicker/mainPanel/MarginContainer" unique_id=1136848403]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ui/dialogueChoicePicker/mainPanel/MarginContainer/Control" unique_id=196629925]
+[node name="RichTextLabel" type="RichTextLabel" parent="viewportContainer/gameViewport/ui/dialogueChoicePicker/mainPanel/MarginContainer/Control" unique_id=196629925]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.513
@@ -661,6 +718,6 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="anim" type="AnimationPlayer" parent="ui/dialogueChoicePicker" unique_id=1393008173]
-root_node = NodePath("../../..")
+[node name="anim" type="AnimationPlayer" parent="viewportContainer/gameViewport/ui/dialogueChoicePicker" unique_id=1393008173]
+root_node = NodePath("../../../../..")
 libraries/ = SubResource("AnimationLibrary_trtic")
