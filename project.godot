@@ -10,16 +10,18 @@ config_version=5
 
 [application]
 
-config/name="papertimeyeah"
+config/name="Clockwork Prism"
 run/main_scene="uid://bhhpuqil50rol"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c8joyjv4b80el"
 
 [autoload]
 
 NpcManager="*uid://dllux41q4ja6n"
 DialogueManager="*uid://cqebv7a7bunxg"
 PlayerManager="*uid://d0vh4rakkbip2"
+DiscordRPCLoader="*uid://clah8cag4iws4"
+RpcManager="*uid://dmb5ihshnvhmg"
 
 [display]
 
@@ -28,6 +30,10 @@ window/size/viewport_height=1080
 window/size/window_width_override=640
 window/size/window_height_override=480
 window/stretch/aspect="ignore"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [file_customization]
 
@@ -90,7 +96,7 @@ turn_prism_right={
 }
 use_prism={
 "deadzone": 0.2,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":57,"key_label":0,"unicode":57,"location":0,"echo":false,"script":null)
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":true,"script":null)
 ]
 }

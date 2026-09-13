@@ -1,4 +1,6 @@
-extends SubViewportContainer
+extends Control
+
+@onready var viewport_container = $viewportContainer
 
 func _ready() -> void:
 	get_window().size_changed.connect(_resize)
